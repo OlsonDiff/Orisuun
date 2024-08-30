@@ -259,12 +259,12 @@ export const PaymentMethod = ({ userData }) => {
       <form onSubmit={handlePayment} className=" space-y-4">
 
         <Elements stripe={stripePromise}>   <StripePayment /> </Elements>
-        {/* <EmbeddedCheckoutProvider
+        <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options="sk_test_51OssK1BOyWHELjbjyacWkCinqS6DnVG7xmd63A6jawPzJ8TlfifAITHdovubHVNqDUa6wAfomfxcElk04muc5XIK00EpDa4NfU"
         >
           <EmbeddedCheckout />
-        </EmbeddedCheckoutProvider> */}
+        </EmbeddedCheckoutProvider>
         {/* <Elements stripe={stripePromise}> <ExpressCheckoutElement options={expressCheckoutOptions} /> </Elements> */}
         <div className="flex justify-between items-center border-y border-[#D8D9D9] py-4">
           <p className="text-lg font-semibold text-[#808181]">
