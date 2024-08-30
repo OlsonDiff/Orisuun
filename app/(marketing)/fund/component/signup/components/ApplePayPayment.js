@@ -15,7 +15,7 @@ const ApplePayPayment = () => {
         }
 
         const pr = stripe.paymentRequest({
-            locale: 'en',
+            country: 'EN',
             currency: 'usd',
             total: {
                 label: 'Demo total',
