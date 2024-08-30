@@ -41,7 +41,7 @@ const ApplePayPayment = ({ amount }) => {
                 paymentRequest, style: {
                     paymentRequestButton: {
                         type: 'default',
-                        theme: 'light',
+                        theme: 'dark',
                         // height: '64px',
                     },
                 },

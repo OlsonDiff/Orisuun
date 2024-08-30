@@ -310,6 +310,7 @@ export const PaymentMethod = ({ userData }) => {
                 alt="Google Pay"
               />
             </div> */}
+            <Elements stripe={stripePromise}>  <ApplePayPayment amount={amount} /></Elements>
             <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/paypal.svg"
@@ -318,7 +319,7 @@ export const PaymentMethod = ({ userData }) => {
                 alt="Paypal"
               />
             </div>
-            <Elements stripe={stripePromise}>  <ApplePayPayment amount={amount} /></Elements>
+
             {/* <StripePayment /> */}
           </div>
         </div>
