@@ -258,7 +258,7 @@ export const PaymentMethod = ({ userData }) => {
     <>
       <form onSubmit={handlePayment} className=" space-y-4">
 
-        {/* <StripePayment /> */}
+        <Elements stripe={stripePromise}>   <StripePayment /> </Elements>
         {/* <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options="sk_test_51OssK1BOyWHELjbjyacWkCinqS6DnVG7xmd63A6jawPzJ8TlfifAITHdovubHVNqDUa6wAfomfxcElk04muc5XIK00EpDa4NfU"
