@@ -56,7 +56,7 @@ const Chats = () => {
   const [loader, setLoader] = useState(false);
   const [loaderChat, setLoaderChat] = useState(false);
   const [loaderImage, setLoaderImage] = useState(false);
-  console.log(selectedChat, 'selectedChat');
+  // console.log(selectedChat, 'selectedChat');
 
   // Fetch chat list on component mount
   const fetchChats = async () => {
