@@ -79,7 +79,11 @@ export const PaymentMethod = ({ userData }) => {
     try {
       const userData = JSON.parse(localStorage.getItem('registerUser'));
       const verifyPayment = await axios.post(`${apiEndpoint}/UserVerification/GetVerificationPaymentIntent`, {
-        UserId: userData?.user?.Id
+        UserId: userData?.user?.Id,
+        CardNumber: data?.cardNumber,
+        CardExpiry: data?.expiry,
+        CardCVV: data?.cvc,
+        PlanId: userData?.BillingPlanId
       },
         {
           headers: {
@@ -200,11 +204,6 @@ export const PaymentMethod = ({ userData }) => {
     setIsOpen(false);
   }
 
-  console.log(
-    "isOpen ", isOpen
-  );
-
-
   // const renderCardFields = () => {
   //   return (
   //     <div className="w-full space-y-4">
@@ -310,7 +309,7 @@ export const PaymentMethod = ({ userData }) => {
                 alt="Google Pay"
               />
             </div> */}
-            <Elements stripe={stripePromise}>  <ApplePayPayment amount={amount} /></Elements>
+            <Elements stripe={stripePromise}>  <StripePayment amount={amount} /></Elements>
             <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/paypal.svg"
