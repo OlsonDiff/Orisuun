@@ -52,6 +52,7 @@ export const PaymentMethod = ({ userData }) => {
   const [selectedAccountType, setSelectedAccountType] = useState(
     accountType[0]
   );
+  const [amount, setAmount] = useState()
   const elements = useElements();
 
   const handleChange = (option) => {
@@ -255,6 +256,15 @@ export const PaymentMethod = ({ userData }) => {
   // };
 
 
+  useEffect(() => {
+    if (typeof window.localStorage !== 'undefined') {
+      const registerUser = JSON.parse(localStorage.getItem('registerUser'))
+      if (registerUser?.paymentIntent) {
+        setAmount(registerUser?.paymentIntent?.Amount)
+      }
+    }
+  }, [])
+
   return (
     <>
       <form onSubmit={handlePayment} className=" space-y-4">
@@ -282,7 +292,7 @@ export const PaymentMethod = ({ userData }) => {
         <div className="space-y-2">
           <p className="text-sm font-medium text-[#6E6E6E]">Payment methods</p>
           <div className="grid grid-cols-3 gap-4">
-            <Elements stripe={stripePromise}>  <StripePayment amount={JSON.parse(localStorage.getItem("registerUser"))?.paymentIntent?.Amount} /></Elements>
+            <Elements stripe={stripePromise}>  <StripePayment amount={amount} /></Elements>
             {/* <Elements stripe={stripePromise}>  <GooglePay /></Elements> */}
             {/* <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
