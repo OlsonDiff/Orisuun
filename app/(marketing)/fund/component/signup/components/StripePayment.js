@@ -15,7 +15,7 @@ const StripePayment = ({ amount }) => {
 
             const expressCheckoutOptions = {
                 buttonType: {
-                    applePay: 'pay',
+                    applePay: 'checkout',
                     googlePay: 'pay',
                 }
             }
