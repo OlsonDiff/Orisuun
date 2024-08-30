@@ -259,12 +259,12 @@ export const PaymentMethod = ({ userData }) => {
       <form onSubmit={handlePayment} className=" space-y-4">
 
         <Elements stripe={stripePromise}>   <StripePayment /> </Elements>
-        <EmbeddedCheckoutProvider
+        {/* <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options="sk_test_51OssK1BOyWHELjbjyacWkCinqS6DnVG7xmd63A6jawPzJ8TlfifAITHdovubHVNqDUa6wAfomfxcElk04muc5XIK00EpDa4NfU"
         >
           <EmbeddedCheckout />
-        </EmbeddedCheckoutProvider>
+        </EmbeddedCheckoutProvider> */}
         {/* <Elements stripe={stripePromise}> <ExpressCheckoutElement options={expressCheckoutOptions} /> </Elements> */}
         <div className="flex justify-between items-center border-y border-[#D8D9D9] py-4">
           <p className="text-lg font-semibold text-[#808181]">
@@ -281,8 +281,8 @@ export const PaymentMethod = ({ userData }) => {
         <div className="space-y-2">
           <p className="text-sm font-medium text-[#6E6E6E]">Payment methods</p>
           <div className="grid grid-cols-3 gap-4">
-            <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
-            <Elements stripe={stripePromise}>  <GooglePay /></Elements>
+            {/* <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
+            <Elements stripe={stripePromise}>  <GooglePay /></Elements> */}
             {/* <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/applePay.svg"
