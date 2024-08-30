@@ -1,0 +1,153 @@
+@import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: "Neue Haas Grotesk Display Pro", sans-serif;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* styling select input icon */
+.select-wrapper {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
+  background-position: 100%;
+  background-repeat: no-repeat;
+}
+
+.bg-contribute {
+  background-image: url("/how-svgs/contribute.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-tell-orisuun {
+  background-image: url("/how-svgs/tell-orisuun.svg");
+  background-size: cover;
+  background-position: center;
+}
+.bg-onboarding {
+  background-image: url("/beta/images/onboarding.svg");
+  background-size: cover;
+  background-position: center;
+}
+.submenu {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  z-index: 100;
+}
+
+.submenu-open {
+  width: 100%;
+}
+
+.half-clip {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 47.9%, 0% 47.9%);
+}
+/* HERO SECTION */
+
+::-webkit-scrollbar {
+  width: 2px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  width: 2px;
+  height: 10%;
+  background-color: #d8d9d9; /* Color of the scroll thumb */
+  border-radius: 11px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f2f2; /* Background of the scrollbar track */
+  border-radius: 42px;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.custom-double-shadow {
+  box-shadow:
+    0px 7px 10px -2px rgba(35, 87, 198, 0.15),
+    0px 2px 4px -2px rgba(35, 87, 198, 0.15);
+}
+.custom-blur {
+  width: 100%;
+  height: 100%;
+  background: url("/home/images/blurs.svg") no-repeat center;
+  background-size: cover;
+  filter: blur(20px);
+  opacity: 0.7;
+}
+
+.border-gradient {
+  position: relative;
+  padding: 16px 24px;
+  border-radius: 66px; /* Optional: for rounded corners */
+  background:
+    linear-gradient(#f2f7fc, #f2f7fc) padding-box,
+    linear-gradient(153.83deg, #2357c6 -1.08%, #5ea8ff 100.26%) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0px 4px 12px -4px rgba(0, 30, 95, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #2357c6 79.59%, #5ea8ff 100%);
+  background: linear-gradient(90deg, #2357c6 79.59%, #5ea8ff 100%);
+  -webkit-background-clip: text; /* For Safari and Chrome */
+  -webkit-text-fill-color: transparent; /* For Safari and Chrome */
+  background-clip: text; /* Standard property for other browsers */
+
+  .underline-gradient {
+    background-image: linear-gradient(90deg, #2357c6 79.59%, #5ea8ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari and Chrome */
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 88%;
+  }
+}
+.custom-underline {
+  position: relative;
+}
+
+.custom-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* Adjust this value for the desired space */
+  width: 100%;
+  height: 2px; /* Adjust this value for the underline thickness */
+  background: linear-gradient(90deg, #2357c6 79.59%, #5ea8ff 100%);
+}
