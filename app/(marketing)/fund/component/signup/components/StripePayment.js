@@ -17,9 +17,9 @@ const StripePayment = () => {
                 buttonType: {
                     applePay: 'buy',
                     googlePay: 'buy',
-                    applePay: 'plain',
-                    googlePay: 'check-out',
-                    googlePay: 'plain'
+                    // applePay: 'plain',
+                    // googlePay: 'check-out',
+                    // googlePay: 'plain'
                     // paypal: 'buynow'
                 }
             }
