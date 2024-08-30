@@ -25,6 +25,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import StripePayment from "./StripePayment"
 import ApplePayPayment from "./ApplePayPayment"
 import GooglePay from './GooglePayPayment';
+import PaymentRequestForm from './PaymentRequestForm';
 // import { useRouter } from 'next/router';
 // import Modal from '@/components/modal';
 const stripePromise = loadStripe(
@@ -258,7 +259,7 @@ export const PaymentMethod = ({ userData }) => {
     <>
       <form onSubmit={handlePayment} className=" space-y-4">
 
-        <Elements stripe={stripePromise}>   <StripePayment /> </Elements>
+        {/* <Elements stripe={stripePromise}>   <StripePayment /> </Elements> */}
         {/* <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options="sk_test_51OssK1BOyWHELjbjyacWkCinqS6DnVG7xmd63A6jawPzJ8TlfifAITHdovubHVNqDUa6wAfomfxcElk04muc5XIK00EpDa4NfU"
@@ -281,8 +282,8 @@ export const PaymentMethod = ({ userData }) => {
         <div className="space-y-2">
           <p className="text-sm font-medium text-[#6E6E6E]">Payment methods</p>
           <div className="grid grid-cols-3 gap-4">
-            {/* <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
-            <Elements stripe={stripePromise}>  <GooglePay /></Elements> */}
+            <Elements stripe={stripePromise}>  <StripePayment amount={JSON.parse(localStorage.getItem("registerUser"))?.paymentIntent?.Amount} /></Elements>
+            {/* <Elements stripe={stripePromise}>  <GooglePay /></Elements> */}
             {/* <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/applePay.svg"

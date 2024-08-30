@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe("pk_test_51OssK1BOyWHELjbjy7d77ajLCS43yxCfnvkVOzl62EZ36HiaBWBf1ljqTgfSzTtJlFOwrAY9JqpKo02omvRWpQ5z00kfqqqo1K");
 
-const StripePayment = () => {
+const StripePayment = ({ amount }) => {
     useEffect(() => {
         (async () => {
             const stripe = await stripePromise;
@@ -17,16 +17,12 @@ const StripePayment = () => {
                 buttonType: {
                     applePay: 'buy',
                     googlePay: 'buy',
-                    // applePay: 'plain',
-                    // googlePay: 'check-out',
-                    // googlePay: 'plain'
-                    // paypal: 'buynow'
                 }
             }
             const elements = stripe.elements({
                 locale: 'en',
                 mode: 'payment',
-                amount: 1099,
+                amount: amount ? amount : 100,
                 currency: 'usd',
             })
             const expressCheckoutElement = elements.create(
@@ -92,7 +88,6 @@ const StripePayment = () => {
 
     return (
         <div>
-            <h1>Pay with Apple Pay or Google Pay</h1>
             <div id="express-checkout-element"></div>
         </div>
     );
