@@ -25,7 +25,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import StripePayment from "./StripePayment"
 import ApplePayPayment from "./ApplePayPayment"
 import GooglePay from './GooglePayPayment';
-import PaymentRequestForm from './PaymentRequestForm';
+// import PaymentRequestForm from './PaymentRequestForm';
 // import { useRouter } from 'next/router';
 // import Modal from '@/components/modal';
 const stripePromise = loadStripe(
