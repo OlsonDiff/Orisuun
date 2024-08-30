@@ -280,8 +280,8 @@ export const PaymentMethod = ({ userData }) => {
         <div className="space-y-2">
           <p className="text-sm font-medium text-[#6E6E6E]">Payment methods</p>
           <div className="grid grid-cols-3 gap-4">
+            <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
             <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
-              <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
               {/* <Image
                 src="/icons/applePay.svg"
                 width={53}
