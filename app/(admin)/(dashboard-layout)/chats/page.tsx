@@ -9,6 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
 import { generateUploadFileSasTokenData } from '@/server-actions/verification';
 
+// const Result = dynamic(() => import("@/app/quiz/Result"), { ssr: false });
+
+
 const Loader: React.FC = () => {
   return (
     <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-20">
@@ -33,9 +36,12 @@ function formatFileName(fileName, startChars = 15, endChars = 2) {
   return `${start}...${end}${ext}`;
 }
 const Chats = () => {
+  let senderId;
+  if (typeof window !== 'undefined') {
+    senderId = JSON.parse(localStorage.getItem('userData'));
+  }
   const { profileData } = useSelector((state: RootState) => state.user);
   console.log(profileData, 'profileData');
-
   const [sasToken, setSasToken] = useState('');
   const [chats, setChats] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
@@ -47,7 +53,6 @@ const Chats = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [file, setFile] = useState(null);
   const [userList, setUserList] = useState([]);
-  const senderId = JSON.parse(localStorage.getItem('userData'));
   const [loader, setLoader] = useState(false);
   const [loaderChat, setLoaderChat] = useState(false);
   const [loaderImage, setLoaderImage] = useState(false);
@@ -240,8 +245,8 @@ const Chats = () => {
         Message: newMessage,
         ChatDocument: attachmentUrl
           ? {
-              Document: attachmentName,
-            }
+            Document: attachmentName,
+          }
           : {}, // Use the URL from file upload
       };
 
@@ -373,86 +378,83 @@ const Chats = () => {
                 <ul>
                   {userList.length > 0
                     ? userList?.map((user) => (
-                        <li
-                          key={user.Id}
-                          className={`flex items-center space-x-3 p-3 cursor-pointer relative `}
-                          onClick={() => handleChatSelect(user)}
-                        >
-                          <div
-                            className={`h-10 w-2 rounded-r-lg absolute left-0`}
-                          ></div>
-                          <img
-                            src={
-                              user.ProfilePicture ||
-                              'https://via.placeholder.com/40'
-                            }
-                            alt="Profile"
-                            className="w-10 h-10 rounded-full"
-                          />
-                          <div className="flex-1">
-                            <h3 className="text-sm font-medium ">
-                              {user.FirstName + user.LastName}
-                            </h3>
-                          </div>
-                        </li>
-                      ))
+                      <li
+                        key={user.Id}
+                        className={`flex items-center space-x-3 p-3 cursor-pointer relative `}
+                        onClick={() => handleChatSelect(user)}
+                      >
+                        <div
+                          className={`h-10 w-2 rounded-r-lg absolute left-0`}
+                        ></div>
+                        <img
+                          src={
+                            user.ProfilePicture ||
+                            'https://via.placeholder.com/40'
+                          }
+                          alt="Profile"
+                          className="w-10 h-10 rounded-full"
+                        />
+                        <div className="flex-1">
+                          <h3 className="text-sm font-medium ">
+                            {user.FirstName + user.LastName}
+                          </h3>
+                        </div>
+                      </li>
+                    ))
                     : <p className='text-center text-lg text-gray-600 whitespace-nowrap'>No chat found</p>}
                 </ul>
               </div>
             )}
             <div
-              className={`overflow-y-auto ${
-                searchQuery.trim() ? 'h-[calc(40%-33px)]' : 'h-full'
-              }`}
+              className={`overflow-y-auto ${searchQuery.trim() ? 'h-[calc(40%-33px)]' : 'h-full'
+                }`}
             >
               <h2 className="pt-4 px-3 text-[#2357C6] font-semibold mb-4 bg-white sticky top-0 z-50 flex items-start gap-2">
-              <svg
-                    version="1.1"
-                    width="512"
-                    height="512"
-                    x="0"
-                    y="0"
-                    viewBox="0 0 24 24"
-                    className="hovered-paths h-6 w-6"
-                  >
-                    <g>
-                      <g fill="#000">
-                        <path
-                          d="M7.25 8A.75.75 0 0 1 8 7.25h4a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 8zM7.25 12a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75z"
-                          fill="#2357C6"
-                          opacity="1"
-                          data-original="#2357C6"
-                          className="hovered-path"
-                        ></path>
-                        <path
-                          fill-rule="evenodd"
-                          d="M9.966 1.25h4.068c1.371 0 2.447 0 3.311.07.88.073 1.607.221 2.265.557a5.75 5.75 0 0 1 2.513 2.513c.336.658.484 1.385.556 2.265.071.864.071 1.94.071 3.311v1.365c0 1.549 0 2.493-.232 3.287a5.75 5.75 0 0 1-3.9 3.9c-.794.232-1.738.232-3.287.232h-.756a4.25 4.25 0 0 0-2.42.776l-.05.035-2.61 1.865C7.99 22.5 6.012 20.948 6.7 19.232a.351.351 0 0 0-.327-.482h-.601a4.522 4.522 0 0 1-4.522-4.522V9.966c0-1.371 0-2.447.07-3.311.073-.88.221-1.607.557-2.265A5.75 5.75 0 0 1 4.39 1.877c.658-.336 1.385-.484 2.265-.556.864-.071 1.94-.071 3.311-.071zM6.777 2.816c-.787.064-1.295.188-1.706.397a4.25 4.25 0 0 0-1.858 1.858c-.21.411-.333.919-.397 1.706-.065.796-.066 1.81-.066 3.223v4.228a3.022 3.022 0 0 0 3.022 3.022h.601a1.851 1.851 0 0 1 1.72 2.539c-.131.326.244.62.53.416L11.29 18.3a5.75 5.75 0 0 1 3.276-1.05H15.184c1.742 0 2.452-.008 3.012-.172a4.25 4.25 0 0 0 2.882-2.882c.164-.56.172-1.27.172-3.012V10c0-1.413 0-2.427-.066-3.223-.064-.787-.188-1.295-.397-1.706a4.25 4.25 0 0 0-1.857-1.858c-.412-.21-.92-.333-1.707-.397-.796-.065-1.81-.066-3.223-.066h-4c-1.413 0-2.427 0-3.223.066z"
-                          clip-rule="evenodd"
-                          fill="#2357C6"
-                          opacity="1"
-                          data-original="#2357C6"
-                          className="hovered-path"
-                        ></path>
-                      </g>
+                <svg
+                  version="1.1"
+                  width="512"
+                  height="512"
+                  x="0"
+                  y="0"
+                  viewBox="0 0 24 24"
+                  className="hovered-paths h-6 w-6"
+                >
+                  <g>
+                    <g fill="#000">
+                      <path
+                        d="M7.25 8A.75.75 0 0 1 8 7.25h4a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 8zM7.25 12a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75z"
+                        fill="#2357C6"
+                        opacity="1"
+                        data-original="#2357C6"
+                        className="hovered-path"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        d="M9.966 1.25h4.068c1.371 0 2.447 0 3.311.07.88.073 1.607.221 2.265.557a5.75 5.75 0 0 1 2.513 2.513c.336.658.484 1.385.556 2.265.071.864.071 1.94.071 3.311v1.365c0 1.549 0 2.493-.232 3.287a5.75 5.75 0 0 1-3.9 3.9c-.794.232-1.738.232-3.287.232h-.756a4.25 4.25 0 0 0-2.42.776l-.05.035-2.61 1.865C7.99 22.5 6.012 20.948 6.7 19.232a.351.351 0 0 0-.327-.482h-.601a4.522 4.522 0 0 1-4.522-4.522V9.966c0-1.371 0-2.447.07-3.311.073-.88.221-1.607.557-2.265A5.75 5.75 0 0 1 4.39 1.877c.658-.336 1.385-.484 2.265-.556.864-.071 1.94-.071 3.311-.071zM6.777 2.816c-.787.064-1.295.188-1.706.397a4.25 4.25 0 0 0-1.858 1.858c-.21.411-.333.919-.397 1.706-.065.796-.066 1.81-.066 3.223v4.228a3.022 3.022 0 0 0 3.022 3.022h.601a1.851 1.851 0 0 1 1.72 2.539c-.131.326.244.62.53.416L11.29 18.3a5.75 5.75 0 0 1 3.276-1.05H15.184c1.742 0 2.452-.008 3.012-.172a4.25 4.25 0 0 0 2.882-2.882c.164-.56.172-1.27.172-3.012V10c0-1.413 0-2.427-.066-3.223-.064-.787-.188-1.295-.397-1.706a4.25 4.25 0 0 0-1.857-1.858c-.412-.21-.92-.333-1.707-.397-.796-.065-1.81-.066-3.223-.066h-4c-1.413 0-2.427 0-3.223.066z"
+                        clip-rule="evenodd"
+                        fill="#2357C6"
+                        opacity="1"
+                        data-original="#2357C6"
+                        className="hovered-path"
+                      ></path>
                     </g>
-                  </svg>
+                  </g>
+                </svg>
                 Recent Chats
               </h2>
               <ul>
                 {chats?.map((chat) => (
                   <li
                     key={chat.Id}
-                    className={`flex items-center space-x-3 p-3 cursor-pointer relative ${
-                      selectedChat?.Id === chat?.Id ? 'bg-[#E9EEF9]' : ''
-                    }`}
+                    className={`flex items-center space-x-3 p-3 cursor-pointer relative ${selectedChat?.Id === chat?.Id ? 'bg-[#E9EEF9]' : ''
+                      }`}
                     onClick={() => handleChatSelect(chat)}
                   >
                     <div
-                      className={`h-10 w-2 rounded-r-lg absolute left-0 ${
-                        selectedChat?.Id === chat?.Id
-                          ? 'bg-[#2357C6]'
-                          : 'opacity-0'
-                      }`}
+                      className={`h-10 w-2 rounded-r-lg absolute left-0 ${selectedChat?.Id === chat?.Id
+                        ? 'bg-[#2357C6]'
+                        : 'opacity-0'
+                        }`}
                     ></div>
                     <img
                       src={
@@ -503,31 +505,27 @@ const Chats = () => {
                     </h3>
                   </div>
                   <div
-                    className={`flex-1 p-3 overflow-y-auto ${
-                      file
-                        ? 'max-h-[calc(100vh-226px)]'
-                        : 'max-h-[calc(100vh-182px)]'
-                    } ${
-                      file
+                    className={`flex-1 p-3 overflow-y-auto ${file
+                      ? 'max-h-[calc(100vh-226px)]'
+                      : 'max-h-[calc(100vh-182px)]'
+                      } ${file
                         ? 'min-h-[calc(100vh-226px)]'
                         : 'min-h-[calc(100vh-182px)]'
-                    }`}
+                      }`}
                   >
                     {messages?.map((message, index) => (
                       <div
                         key={index}
-                        className={`flex items-start mb-4 ${
-                          message.Sender_UserId === senderId.Id
-                            ? 'justify-end '
-                            : 'justify-start '
-                        } gap-3`}
+                        className={`flex items-start mb-4 ${message.Sender_UserId === senderId.Id
+                          ? 'justify-end '
+                          : 'justify-start '
+                          } gap-3`}
                       >
                         <div
-                          className={`flex items-center justify-between gap-5 p-3 rounded-lg text-left ${
-                            message.Sender_UserId === senderId.Id
-                              ? 'bg-[#E9EEF9]'
-                              : 'bg-[#f2f2f2] order-2'
-                          } max-w-[80%]`}
+                          className={`flex items-center justify-between gap-5 p-3 rounded-lg text-left ${message.Sender_UserId === senderId.Id
+                            ? 'bg-[#E9EEF9]'
+                            : 'bg-[#f2f2f2] order-2'
+                            } max-w-[80%]`}
                         >
                           <div>
                             {!!message.Message && (
@@ -568,9 +566,9 @@ const Chats = () => {
                           src={
                             message.Sender_UserId === senderId.Id
                               ? message.SenderProfileImage ||
-                                'https://via.placeholder.com/50'
+                              'https://via.placeholder.com/50'
                               : message.ReciverProfileImage ||
-                                'https://via.placeholder.com/50'
+                              'https://via.placeholder.com/50'
                           }
                           alt="Profile"
                           className="w-8 h-8 rounded-full"
