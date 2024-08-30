@@ -37,11 +37,11 @@ const ApplePayPayment = ({ amount }) => {
 
     return (
         <>
-            {paymentRequest && <PaymentRequestButtonElement options={{
+            {paymentRequest && <PaymentRequestButtonElement className='border border-[#B2B3B3] rounded-lg' options={{
                 paymentRequest, style: {
                     paymentRequestButton: {
                         type: 'default',
-                        theme: 'dark',
+                        theme: 'light',
                         // height: '64px',
                     },
                 },
