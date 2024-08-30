@@ -256,7 +256,7 @@ export const PaymentMethod = ({ userData }) => {
   return (
     <>
       <form onSubmit={handlePayment} className=" space-y-4">
-        <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
+
         {/* <StripePayment /> */}
         {/* <EmbeddedCheckoutProvider
           stripe={stripePromise}
@@ -281,21 +281,22 @@ export const PaymentMethod = ({ userData }) => {
           <p className="text-sm font-medium text-[#6E6E6E]">Payment methods</p>
           <div className="grid grid-cols-3 gap-4">
             <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
-              <Image
+              <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
+              {/* <Image
                 src="/icons/applePay.svg"
                 width={53}
                 height={22}
                 alt="Apple Pay"
-              />
+              /> */}
             </div>
-            <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
+            {/* <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/googlepay.svg"
                 width={55}
                 height={24}
                 alt="Google Pay"
               />
-            </div>
+            </div> */}
             <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/paypal.svg"

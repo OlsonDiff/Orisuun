@@ -82,24 +82,7 @@ const ApplePayPayment = () => {
 
     return (
         <>
-            <h1>Apple Pay</h1>
-
-            <div>
-                Before you start, you need to:
-                <ul>
-                    <li><a href="https://stripe.com/docs/stripe-js/elements/payment-request-button#html-js-testing" target="_blank">Add a payment method to your browser.</a> For example, add a card to your Wallet for Safari.</li>
-                    <li>Serve your application over HTTPS. This is a requirement both in development and in production. One way to get up and running is to use a service like <a href="https://ngrok.com/" target="_blank" rel="noopener noreferrer">ngrok</a>.</li>
-                    <li><a href="https://stripe.com/docs/stripe-js/elements/payment-request-button#verifying-your-domain-with-apple-pay" target="_blank">Verify your domain with Apple Pay</a>, both in development and production.</li>
-                </ul>
-            </div>
-
-            <a href="https://stripe.com/docs/stripe-js/elements/payment-request-button" target="_blank">Stripe Documentation</a>
-
             {paymentRequest && <PaymentRequestButtonElement options={{ paymentRequest }} />}
-
-            {/* <StatusMessages messages={messages} /> */}
-
-            <p> <a href="https://youtu.be/bMCsJfJyQKA" target="_blank">Watch a demo walkthrough</a> </p>
         </>
     );
 };
