@@ -91,7 +91,7 @@ const StripePayment = () => {
     }, []);
 
     return (
-        <div className='border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center'>
+        <div>
             <h1>Pay with Apple Pay or Google Pay</h1>
             <div id="express-checkout-element"></div>
         </div>
