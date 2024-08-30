@@ -33,8 +33,8 @@ export default function SignUp() {
               </Link>
             </header>
             <section className="w-[85%] md:min-w-[490px] md:max-w-[60%] mx-auto ">
-              {page === 0 && <Profile setPage={setPage} />}
-              {page === 1 && <Elements stripe={stripePromise}> <PaymentMethod /></Elements>}
+              {page === 1 && <Profile setPage={setPage} />}
+              {page === 0 && <Elements stripe={stripePromise}> <PaymentMethod /></Elements>}
             </section>
           </div>
         </div>

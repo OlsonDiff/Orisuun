@@ -19,10 +19,11 @@ import { SuccessModal } from './Contribution/successModal';
 import Modal from '@/components/marketing/Payment Modal/Modal';
 import { useRouter } from 'next/navigation';
 import { accountType } from '@/data/marketing';
-import { CardElement, CardNumberElement, Elements, EmbeddedCheckout, EmbeddedCheckoutProvider, ExpressCheckoutElement, useElements } from '@stripe/react-stripe-js';
+import { CardElement, CardNumberElement, Elements, EmbeddedCheckout, EmbeddedCheckoutProvider, ExpressCheckoutElement, PaymentRequestButtonElement, useElements } from '@stripe/react-stripe-js';
 import ApplePay from '@/icons/apple-pay';
 import { loadStripe } from '@stripe/stripe-js';
 import StripePayment from "./StripePayment"
+import ApplePayPayment from "./ApplePayPayment"
 // import { useRouter } from 'next/router';
 // import Modal from '@/components/modal';
 const stripePromise = loadStripe(
@@ -255,6 +256,7 @@ export const PaymentMethod = ({ userData }) => {
   return (
     <>
       <form onSubmit={handlePayment} className=" space-y-4">
+        <Elements stripe={stripePromise}>  <ApplePayPayment /></Elements>
         {/* <StripePayment /> */}
         {/* <EmbeddedCheckoutProvider
           stripe={stripePromise}
