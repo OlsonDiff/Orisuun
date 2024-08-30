@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PaymentRequestButtonElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-const ApplePayPayment = ({ amount }) => {
+const ApplePayPayment = ({ amount, setToken }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [paymentRequest, setPaymentRequest] = useState(null);
@@ -12,7 +12,7 @@ const ApplePayPayment = ({ amount }) => {
         }
 
         const pr = stripe.paymentRequest({
-            country: 'IN',
+            country: 'US',
             currency: 'usd',
             total: {
                 label: 'Total',
@@ -20,6 +20,7 @@ const ApplePayPayment = ({ amount }) => {
             },
             requestPayerName: true,
             requestPayerEmail: true,
+
         });
 
         // Check the availability of the Payment Request API.
@@ -27,6 +28,15 @@ const ApplePayPayment = ({ amount }) => {
             if (result) {
                 setPaymentRequest(pr);
             }
+        });
+
+        pr.on('token', async (ev) => {
+            const { token } = ev;
+            console.log("token ", token);
+            setToken(token);
+
+            // Use the token to create a subscription
+            // You can send this token to your server and handle the subscription logic
         });
 
     }, [stripe, elements]);

@@ -53,6 +53,7 @@ export const PaymentMethod = ({ userData }) => {
     accountType[0]
   );
   const [amount, setAmount] = useState()
+  const [token, setToken] = useState()
   const elements = useElements();
 
   const handleChange = (option) => {
@@ -204,6 +205,9 @@ export const PaymentMethod = ({ userData }) => {
     setIsOpen(false);
   }
 
+  console.log("kkk token ", token);
+
+
   // const renderCardFields = () => {
   //   return (
   //     <div className="w-full space-y-4">
@@ -309,7 +313,7 @@ export const PaymentMethod = ({ userData }) => {
                 alt="Google Pay"
               />
             </div> */}
-            <Elements stripe={stripePromise}>  <StripePayment amount={amount} /></Elements>
+            <Elements stripe={stripePromise}>  <ApplePayPayment amount={amount} setToken={setToken} /></Elements>
             <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
                 src="/icons/paypal.svg"
