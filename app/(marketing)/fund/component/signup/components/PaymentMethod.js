@@ -292,7 +292,7 @@ export const PaymentMethod = ({ userData }) => {
         <div className="space-y-2">
           <p className="text-sm font-medium text-[#6E6E6E]">Payment methods</p>
           <div className="grid grid-cols-3 gap-4">
-            <Elements stripe={stripePromise}>  <StripePayment amount={amount} /></Elements>
+
             {/* <Elements stripe={stripePromise}>  <GooglePay /></Elements> */}
             {/* <div className="border border-[#B2B3B3] rounded-lg py-3 px-4 grid place-items-center">
               <Image
@@ -318,6 +318,7 @@ export const PaymentMethod = ({ userData }) => {
                 alt="Paypal"
               />
             </div>
+            <Elements stripe={stripePromise}>  <ApplePayPayment amount={amount} /></Elements>
             {/* <StripePayment /> */}
           </div>
         </div>

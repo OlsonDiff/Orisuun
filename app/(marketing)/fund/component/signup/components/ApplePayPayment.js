@@ -3,7 +3,7 @@ import { PaymentRequestButtonElement, useStripe, useElements } from '@stripe/rea
 // import StatusMessages, { useMessages } from './StatusMessages';
 import { toast } from 'react-toastify';
 
-const ApplePayPayment = () => {
+const ApplePayPayment = ({ amount }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [paymentRequest, setPaymentRequest] = useState(null);
@@ -19,7 +19,7 @@ const ApplePayPayment = () => {
             currency: 'usd',
             total: {
                 label: 'Demo total',
-                amount: 1999,
+                amount: amount,
             },
             requestPayerName: true,
             requestPayerEmail: true,
