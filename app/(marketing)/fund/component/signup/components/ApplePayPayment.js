@@ -19,7 +19,7 @@ const ApplePayPayment = ({ amount }) => {
             currency: 'usd',
             total: {
                 label: 'Demo total',
-                amount: amount,
+                amount: amount ? amount : 100,
             },
             requestPayerName: true,
             requestPayerEmail: true,
